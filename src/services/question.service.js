@@ -36,7 +36,7 @@ class QuestionService {
     })
     const res = JSON.stringify(item)
 
-    return axios.post(API_URL+`/user/historyV2`, {
+    return axios.post(API_URL+`/user/test`, {
       data: JSON.parse(res)
     },
     { 
