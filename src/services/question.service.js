@@ -43,6 +43,10 @@ class QuestionService {
       headers: authHeader() 
     });
   }
+
+  cekUser(id) {
+    return http.get(API_URL+`/user/cekUser/${id}`, { headers: authHeader() });
+  }
 }
 
 export default new QuestionService();

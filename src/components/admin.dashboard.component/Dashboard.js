@@ -1,33 +1,29 @@
 import React, { Component } from "react";
-import DashboardService from "../../services/dashboard.service";
+import AuthService from "../../services/auth.service";
+import UserService from "../../services/question.service";
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
-    this.count = this.count.bind(this);
+    this.cekUser = this.cekUser.bind(this);
     this.state = {
-      count_admin: 0,
-      count_user: 0,
-      count_category: 0,
-      count_question: 0,
-      count_answer: 0,
+      user: "",
     };
   }
 
   componentDidMount() {
-    this.count();
+    this.cekUser();
   }
 
-  count() {
-    DashboardService.count()
+  cekUser() {
+    const user = AuthService.getCurrentUserID();
+    console.log("userrr::",user);
+ 
+    UserService.cekUser(user.user_id)
       .then((response) => {
         this.setState({
-          count_admin: response.data.count_admin,
-          count_user: response.data.count_user,
-          count_category: response.data.count_category,
-          count_question: response.data.count_question,
-          count_answer: response.data.count_answer,
+          user: response.data.message,
         });
-        console.log(response.data);
+        console.log("ss::",response.data.message);
       })
       .catch((e) => {
         console.log(e);
@@ -35,6 +31,7 @@ export default class Dashboard extends Component {
   }
 
   render() {
+    const { user } = this.state;
     return (
       <div className="content-wrapper">
         <div className="content-header">
@@ -51,6 +48,15 @@ export default class Dashboard extends Component {
           <div className="container-fluid">
             <div className="row">
                         
+            {user == "Exists" ? (
+              <div className="col-lg-12 col-12">
+                <div className="small-box bg-danger">
+                  <div className="inner">
+                    <p className="text-center"><b>you have done the test</b></p>
+                  </div>
+                </div>
+              </div>
+            ) : (
               <div className="col-lg-12 col-12">
                 <div className="small-box bg-warning">
                   <div className="inner">
@@ -60,6 +66,7 @@ export default class Dashboard extends Component {
                   </div>
                 </div>
               </div>
+            )}
 
             </div>
           </div>
