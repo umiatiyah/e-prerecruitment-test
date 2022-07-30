@@ -2,15 +2,15 @@ import http from "../http-common";
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = "https://sheltered-meadow-71757.herokuapp.com";
+const API_URL = process.env.REACT_APP_API_URL;
 
 class QuestionService {
   getAll() {
-    return http.get("/user/question", { headers: authHeader() });
+    return http.get(API_URL+`/user/question`, { headers: authHeader() });
   }
 
   saveHistoryOld(category_id, question_id, answer_id, user_id) {
-    return axios.post(API_URL+"/user/history", {
+    return axios.post(API_URL+`/user/history`, {
       data: [
         {
           category_id: parseInt(category_id),
@@ -36,7 +36,7 @@ class QuestionService {
     })
     const res = JSON.stringify(item)
 
-    return axios.post(API_URL+"/user/historyV2", {
+    return axios.post(API_URL+`/user/historyV2`, {
       data: JSON.parse(res)
     },
     { 
