@@ -48,7 +48,7 @@ export default class Dashboard extends Component {
           <div className="container-fluid">
             <div className="row">
                         
-            {user == "Exists" ? (
+            {user === "Exists" ? (
               <div className="col-lg-12 col-12">
                 <div className="small-box bg-danger">
                   <div className="inner">

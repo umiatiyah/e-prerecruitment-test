@@ -29,7 +29,7 @@ export default class Menu extends Component {
     return (
       <aside className="main-sidebar sidebar-light-primary elevation-4">
         {/* Brand Logo */}
-        <a href="/admin" className="brand-link">
+        <a href="/dashboard" className="brand-link">
           <img
             src="/assets/dist/img/AdminLTELogo.png"
             alt="AdminLTE Logo"
@@ -51,17 +51,36 @@ export default class Menu extends Component {
             </div>
             {currentUser ? (
               <div className="info">
+                <a href="/profile" className="d-block">
                   {currentUser.name}
+                </a>
               </div>
             ) : (
               <div className="info">
                 <a href="/login" className="d-block">
-                  admin
+                  user
                 </a>
               </div>
             )}
           </div>
           {/* Sidebar Menu */}
+          <nav className="mt-2">
+            <ul
+              className="nav nav-pills nav-sidebar flex-column"
+              data-widget="treeview"
+              role="menu"
+              data-accordion="false"
+            >
+              <li className="nav-item ">
+                <a href="/dashboard" className="nav-link">
+                  <i className="nav-icon fas fa-home" />
+                  <p>
+                    Dashboard
+                  </p>
+                </a>
+              </li>
+            </ul>
+          </nav>
           {/* /.sidebar-menu */}
         </div>
         {/* /.sidebar */}
