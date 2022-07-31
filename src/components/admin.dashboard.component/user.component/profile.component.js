@@ -11,6 +11,7 @@ export default class Profile extends Component {
     this.onChangeName = this.onChangeName.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangeNIK = this.onChangeNIK.bind(this);
+    this.onChangePassword = this.onChangePassword.bind(this);
     this.updateUser = this.updateUser.bind(this);
 
     this.state = {
@@ -18,6 +19,7 @@ export default class Profile extends Component {
       users: [],
       name: "",
       email: "",
+      password: "",
       nik: "",
       message: "",
   };
@@ -66,6 +68,19 @@ export default class Profile extends Component {
     });
   }
 
+  onChangePassword(e) {
+    const value = e.target.value;
+
+    this.setState(function (prevState) {
+      return {
+        users: {
+          ...prevState.users,
+          password: value,
+        },
+      };
+    });
+  }
+
   retrieveUser() {
     const user = AuthService.getCurrentUserID();
  
@@ -83,7 +98,7 @@ export default class Profile extends Component {
   updateUser() {
     const user = AuthService.getCurrentUserID();
  
-    UserService.updateUser(user.user_id, this.state.users.name, this.state.users.email, this.state.users.nik)
+    UserService.updateUser(user.user_id, this.state.users.name, this.state.users.email, this.state.users.nik, this.state.users.password)
       .then((response) => {
         if(response.data.status === 400) {
           alert(response.data.message)
@@ -132,6 +147,11 @@ export default class Profile extends Component {
                           Email
                         </p>
                       </div>
+                      <div className="form-group my-4">
+                        <p>
+                          Password
+                        </p>
+                      </div>
                     </div>
                     <form>
                       <div className="col-lg-12">
@@ -160,6 +180,15 @@ export default class Profile extends Component {
                           id="value"
                           value={users.email}
                           onChange={this.onChangeEmail}
+                          />
+                        </div>
+                        <div className="form-group my-3">
+                        <input
+                          type="password"
+                          className="form-control"
+                          id="value"
+                          value={users.password}
+                          onChange={this.onChangePassword}
                           />
                         </div>
                       </div>

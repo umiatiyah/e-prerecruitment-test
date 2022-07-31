@@ -10,11 +10,12 @@ class UserService {
     return http.get(API_URL+`/user/detail/${id}`, { headers: authHeader() });
   }
 
-  updateUser(id, name, email, nik) {
+  updateUser(id, name, email, nik, password) {
     return axios.post(API_URL+`/user/update/${id}`, {
       name: name,
       email: email,
-      nik: nik
+      nik: nik,
+      password: password
     },
     { 
       headers: authHeader() 
