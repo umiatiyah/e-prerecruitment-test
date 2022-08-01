@@ -16,14 +16,12 @@ export default class Dashboard extends Component {
 
   cekUser() {
     const user = AuthService.getCurrentUserID();
-    console.log("userrr::",user);
  
     UserService.cekUser(user.user_id)
       .then((response) => {
         this.setState({
           user: response.data.message,
         });
-        console.log("ss::",response.data.message);
       })
       .catch((e) => {
         console.log(e);
@@ -48,21 +46,21 @@ export default class Dashboard extends Component {
           <div className="container-fluid">
             <div className="row">
                         
-            {user === "Exists" ? (
-              <div className="col-lg-12 col-12">
-                <div className="small-box bg-danger">
-                  <div className="inner">
-                    <p className="text-center"><b>you have done the test</b></p>
-                  </div>
-                </div>
-              </div>
-            ) : (
+            {user === "Not Exists" ? (
               <div className="col-lg-12 col-12">
                 <div className="small-box bg-warning">
                   <div className="inner">
                     <a href="/questions">
                       <p className="text-center">Take a Test <i className="fas fa-arrow-circle-right"></i></p>
                     </a>
+                  </div>
+                </div>
+              </div>
+          ) : (
+              <div className="col-lg-12 col-12">
+                <div className="small-box bg-danger">
+                  <div className="inner">
+                    <p className="text-center"><b>you have done the test</b></p>
                   </div>
                 </div>
               </div>
