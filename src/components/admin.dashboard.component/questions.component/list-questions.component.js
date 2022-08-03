@@ -86,14 +86,8 @@ export default class ListQuestions extends Component {
                   <div className="card-body p-0">
                   {questions.map((question, index) => (
                     <p data-index={index}>
-                      <p>{index+1}. 
-                      <div>
-                        <b>{question.category_value}</b>
-                      </div>
+                      <p>{index+1}. {question.question_value}
                       </p>
-                      <div>
-                        {question.question_value}
-                      </div>
                       <select className="form-control" onChange={this.onChangeAnswer}>
                         <option>Pilih Jawaban</option>
                         { question.answers_list && question.answers_list.map(answer => (
