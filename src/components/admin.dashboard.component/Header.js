@@ -13,12 +13,14 @@ export default class Header extends Component {
 
   componentDidMount() {
     const user = AuthService.getCurrentUser();
-    console.log("USER::",user);
 
     if (user) {
       this.setState({
         currentUser: user,
       });
+    } else {
+      alert("Please login first");
+      window.location = "/";
     }
   }
 

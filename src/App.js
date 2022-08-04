@@ -14,10 +14,8 @@ import Profile from "./components/admin.dashboard.component/user.component/profi
 class App extends Component {
   constructor(props) {
     super(props);
-    this.logOut = this.logOut.bind(this);
 
     this.state = {
-      showAdminBoard: false,
       currentUser: undefined,
     };
   }
@@ -30,10 +28,6 @@ class App extends Component {
         currentUser: user,
       });
     }
-  }
-
-  logOut() {
-    AuthService.logout();
   }
 
   render() {
